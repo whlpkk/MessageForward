@@ -1,0 +1,24 @@
+//
+//  BaseClass.h
+//  zxcq
+//
+//  Created by kun on 15/9/24.
+//  Copyright © 2015年 tuan800. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface BaseClass : NSObject
+
+- (void)baseVersionMethod;
+
+@end
+
+@interface SubClass : BaseClass
+
+@end
+
+@interface SubClass (MySubClass)
+
+@end
+
