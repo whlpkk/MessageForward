@@ -79,11 +79,11 @@
  */
 - (IBAction)dynamicMethodSolution{
     Person *person = [[Person alloc]init] ;
+    person.weight = 100;//This is a dynamic method added for Person instance
+
     void (*methodPointer2)(id ,SEL,BOOL);
     methodPointer2 = (void (*)(id,SEL,BOOL))[person methodForSelector:@selector(isTest:)];
     methodPointer2(person,@selector(isTest:),YES);//This is a test method
-    
-    person.weight = 100;//This is a dynamic method added for Person instance
 }
 
 /**
@@ -107,8 +107,9 @@
  *  转发
  */
 - (IBAction)forward{
-    Person *person = [Person new];
-    person.identifier = @"iyaqi";
+    Person *person = [[Person alloc] init];
+    person.identifier = @"yzk whlpkk";
+    NSLog(@"%@",person.identifier); //null
 }
 
 

@@ -10,13 +10,8 @@
 
 @implementation People
 
-- (void)setIdentifier:(NSString*)str
-{
-    NSLog(@"This is a forward method:%@",str);
-}
-
-- (NSInteger)weight
-{
+- (NSInteger)weight {
     return 666;
 }
+
 @end

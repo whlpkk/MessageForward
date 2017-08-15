@@ -35,15 +35,13 @@ void setPropertyDynamic(id self,SEL _cmd){
     NSLog(@"This is a dynamic method added for Person instance");
 }
 
-+ (BOOL)resolveInstanceMethod:(SEL)sel{
-    
+//
++ (BOOL)resolveInstanceMethod:(SEL)sel{    
     if (sel == @selector(setWeight:)){
         class_addMethod([self class], sel,(IMP)setPropertyDynamic, "v@:");
         return YES;
     }
-    
-    BOOL result = [super resolveInstanceMethod:sel];
-    return result;
+    return [super resolveInstanceMethod:sel];
 }
 
 - (id)forwardingTargetForSelector:(SEL)aSelector{
@@ -55,6 +53,17 @@ void setPropertyDynamic(id self,SEL _cmd){
     return target;
 }
 
+
+
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+    if (aSelector == @selector(setIdentifier:) || aSelector == @selector(identifier) ) {
+        NSMethodSignature *sign = [People instanceMethodSignatureForSelector:aSelector];
+        return sign;
+    }
+    return nil;
+}
 - (void)forwardInvocation:(NSInvocation *)anInvocation{
     People *people = [[People alloc]init];
     if ([people respondsToSelector:[anInvocation selector]]) {
@@ -65,14 +74,8 @@ void setPropertyDynamic(id self,SEL _cmd){
     }
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-{
-    if (aSelector == @selector(setIdentifier:)) {
-        NSMethodSignature *sign = [NSMethodSignature signatureWithObjCTypes:"v@:"];
-        return sign;
-    }
-    return nil;
-}
+
+
 
 - (BOOL)respondsToSelector:(SEL)aSelector
 {

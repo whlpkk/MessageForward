@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface People : NSObject
-
+@property(copy,nonatomic)NSString *identifier;
 @end
