@@ -30,15 +30,14 @@
     return @"description";
 }
 
-void setPropertyDynamic(id self,SEL _cmd){
-    
-    NSLog(@"This is a dynamic method added for Person instance");
+void setPropertyDynamic(id self,SEL _cmd, int weight){
+    NSLog(@"This is a dynamic method added for Person instance : %d", weight);
 }
 
-//
-+ (BOOL)resolveInstanceMethod:(SEL)sel{    
+// type encode https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100
++ (BOOL)resolveInstanceMethod:(SEL)sel{
     if (sel == @selector(setWeight:)){
-        class_addMethod([self class], sel,(IMP)setPropertyDynamic, "v@:");
+        class_addMethod([self class], sel,(IMP)setPropertyDynamic, "v@:i");
         return YES;
     }
     return [super resolveInstanceMethod:sel];
@@ -64,6 +63,7 @@ void setPropertyDynamic(id self,SEL _cmd){
     }
     return nil;
 }
+
 - (void)forwardInvocation:(NSInvocation *)anInvocation{
     People *people = [[People alloc]init];
     if ([people respondsToSelector:[anInvocation selector]]) {
@@ -91,7 +91,7 @@ void setPropertyDynamic(id self,SEL _cmd){
 }
 
 - (void)doesNotRecognizeSelector:(SEL)aSelector {
-    NSLog(@"doesNotRecognizeSelector:%@",NSStringFromSelector(aSelector));
+    NSLog(@"-------------------\ndoesNotRecognizeSelector: %@\n-------------------",NSStringFromSelector(aSelector));
     return [super doesNotRecognizeSelector:aSelector];
 }
 

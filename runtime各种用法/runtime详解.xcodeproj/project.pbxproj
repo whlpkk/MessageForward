@@ -15,8 +15,6 @@
 		831110AB1C4E323E0060C262 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 831110A91C4E323E0060C262 /* LaunchScreen.storyboard */; };
 		835545DE1C575E5A007BF63D /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 835545DD1C575E5A007BF63D /* People.m */; };
 		835545E11C57611A007BF63D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 835545E01C57611A007BF63D /* Person.m */; };
-		835545E41C58CC6F007BF63D /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 835545E31C58CC6F007BF63D /* NSObject+Swizzling.m */; };
-		835545EA1C59E848007BF63D /* NSMutableArray+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 835545E91C59E848007BF63D /* NSMutableArray+Swizzling.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,10 +32,6 @@
 		835545DD1C575E5A007BF63D /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
 		835545DF1C57611A007BF63D /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		835545E01C57611A007BF63D /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		835545E21C58CC6F007BF63D /* NSObject+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzling.h"; sourceTree = "<group>"; };
-		835545E31C58CC6F007BF63D /* NSObject+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzling.m"; sourceTree = "<group>"; };
-		835545E81C59E848007BF63D /* NSMutableArray+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Swizzling.h"; sourceTree = "<group>"; };
-		835545E91C59E848007BF63D /* NSMutableArray+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Swizzling.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +72,6 @@
 				835545E01C57611A007BF63D /* Person.m */,
 				835545DC1C575E5A007BF63D /* People.h */,
 				835545DD1C575E5A007BF63D /* People.m */,
-				835545E21C58CC6F007BF63D /* NSObject+Swizzling.h */,
-				835545E31C58CC6F007BF63D /* NSObject+Swizzling.m */,
-				835545E81C59E848007BF63D /* NSMutableArray+Swizzling.h */,
-				835545E91C59E848007BF63D /* NSMutableArray+Swizzling.m */,
 				831110A41C4E323E0060C262 /* Main.storyboard */,
 				831110A71C4E323E0060C262 /* Assets.xcassets */,
 				831110A91C4E323E0060C262 /* LaunchScreen.storyboard */,
@@ -138,6 +128,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -170,9 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				835545DE1C575E5A007BF63D /* People.m in Sources */,
-				835545E41C58CC6F007BF63D /* NSObject+Swizzling.m in Sources */,
 				831110A31C4E323E0060C262 /* ViewController.m in Sources */,
-				835545EA1C59E848007BF63D /* NSMutableArray+Swizzling.m in Sources */,
 				835545E11C57611A007BF63D /* Person.m in Sources */,
 				831110A01C4E323E0060C262 /* AppDelegate.m in Sources */,
 				8311109D1C4E323E0060C262 /* main.m in Sources */,

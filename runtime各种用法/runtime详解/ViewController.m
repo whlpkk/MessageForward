@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import <objc/runtime.h>
 #import "Person.h"
-#import "NSMutableArray+Swizzling.h"
 
 @interface ViewController ()
 
@@ -19,29 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    //1.获取属性
-//    [self getProperties];
-//    
-//    //2.获取IMP地址
-//    [self getIMPPointer];
-//    
-//    //3.动态方法解析
-//    [self dynamicMethodSolution];
-//    
-//    //4.重定向
-//    [self redirect];
-//    
-//    //5.转发
-//    [self forward];
-//    
-//    //6.Swizzling的简单使用
-//    [self simpleDemoOfSwizzling];
-    
 }
 
 /**
- *  获取属性
+ *  获取属性列表
  */
 - (IBAction)getProperties{
     //通过这个方法获取类
@@ -61,18 +41,6 @@
     free(properties);
 }
 
-/**
- *  获取IMP地址
- */
-- (IBAction)getIMPPointer{
-    //定义一个IMP
-    void (*methodPointer1)(id ,SEL);
-    
-    //methodForSelector根据@selector返回IMP指针地址
-    methodPointer1 = (void (*)(id, SEL))[Person methodForSelector:@selector(description)];
-    //执行这个IMP
-    methodPointer1([Person class],@selector(description));//person have name and age property
-}
 
 /**
  *  动态方法解析
@@ -80,10 +48,6 @@
 - (IBAction)dynamicMethodSolution{
     Person *person = [[Person alloc]init] ;
     person.weight = 100;//This is a dynamic method added for Person instance
-
-    void (*methodPointer2)(id ,SEL,BOOL);
-    methodPointer2 = (void (*)(id,SEL,BOOL))[person methodForSelector:@selector(isTest:)];
-    methodPointer2(person,@selector(isTest:),YES);//This is a test method
 }
 
 /**
@@ -96,14 +60,6 @@
 }
 
 /**
- *  不识别的方法
- */
-- (IBAction)doesNotRecognize{
-    Person *person = [[Person alloc]init] ;
-    person.doesNotRecognize = @"123";
-}
-
-/**
  *  转发
  */
 - (IBAction)forward{
@@ -112,17 +68,31 @@
     NSLog(@"%@",person.identifier); //null
 }
 
-
-- (IBAction)simpleDemoOfSwizzling
-{
-    NSMutableArray *tempArray = [NSMutableArray array];
-    [tempArray addObject:nil];
-    NSLog(@"The array's last object is :%@",tempArray.lastObject);
-    //会发现打印结果为：
-    //NSArray is empty
-    //The array's last object is :(null)
+/**
+ *  获取IMP指针地址并调用
+ */
+- (IBAction)getIMPPointer{
+    //定义一个IMP
+    void (*methodPointer1)(id ,SEL);
+    
+    //methodForSelector根据@selector返回IMP指针地址
+    methodPointer1 = (void (*)(id, SEL))[Person methodForSelector:@selector(description)];
+    //执行这个IMP
+    methodPointer1([Person class],@selector(description));//person have name and age property
+    
+    Person *person = [[Person alloc]init] ;
+    void (*methodPointer2)(id ,SEL,BOOL);
+    methodPointer2 = (void (*)(id,SEL,BOOL))[person methodForSelector:@selector(isTest:)];
+    methodPointer2(person,@selector(isTest:),YES);//This is a test method
 }
 
+/**
+ *  不识别的方法
+ */
+- (IBAction)doesNotRecognize{
+    Person *person = [[Person alloc]init] ;
+    person.doesNotRecognize = @"123";
+}
 
 
 @end
